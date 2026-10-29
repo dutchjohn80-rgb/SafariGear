@@ -1,0 +1,49 @@
+---
+const { nav } = Astro.props;
+---
+<header class="sticky top-0 z-50 px-3 pt-3">
+  <div class="mx-auto flex max-w-7xl items-center gap-4 rounded-full border border-white/10 bg-stone-950/60 py-2.5 pl-6 pr-2.5 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.6)] backdrop-blur-2xl lg:gap-8">
+    <a href="/" class="flex shrink-0 items-center gap-2.5">
+      <span class="grid size-9 place-items-center rounded-full bg-gradient-to-br from-amber-300 to-orange-600 text-stone-950">
+        <svg class="size-5" viewBox="0 0 24 24" fill="currentColor"><path d="M2 20 9.5 7l3.5 6 2-3.5L22 20z"/></svg>
+      </span>
+      <span class="leading-none">
+        <span class="font-display text-lg font-bold tracking-tight">SafariGear</span>
+        <span class="mt-0.5 block text-[10px] font-medium uppercase tracking-[0.25em] text-stone-500">by BongoTrekking</span>
+      </span>
+    </a>
+
+    <nav aria-label="Main" class="hidden md:block">
+      <ul class="flex items-center gap-1 text-sm font-medium text-stone-400">
+        {nav.map((n) => <li><a href={n.href} class="rounded-full px-3.5 py-2 transition hover:bg-white/5 hover:text-white">{n.label}</a></li>)}
+      </ul>
+    </nav>
+
+    <form role="search" id="search-form" class="relative ml-auto hidden flex-1 sm:block sm:max-w-xs">
+      <label for="search" class="sr-only">Search gear</label>
+      <svg class="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-stone-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="search" name="q" type="search" placeholder="Search boots, jackets, tents…" class="w-full rounded-full border border-white/5 bg-white/[0.04] py-2.5 pl-10 pr-14 text-sm placeholder:text-stone-500 transition focus:border-amber-400/50 focus:bg-white/[0.07] focus:outline-none focus:ring-4 focus:ring-amber-400/10" />
+      <kbd class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 rounded-md border border-white/10 px-1.5 py-0.5 font-mono text-[10px] text-stone-500">⌘K</kbd>
+    </form>
+
+    <div class="ml-auto flex items-center gap-1.5 sm:ml-0">
+      <button type="button" id="lang-toggle" aria-label="Switch language" class="grid h-10 min-w-10 place-items-center rounded-full px-3 text-xs font-bold text-stone-400 transition hover:bg-white/5 hover:text-white">EN</button>
+      <button type="button" aria-label="Toggle theme (coming soon)" class="grid size-10 place-items-center rounded-full text-stone-400 transition hover:bg-white/5 hover:text-white">
+        <svg class="size-[18px]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+      <button type="button" id="cart-trigger" aria-label="Shopping cart" class="relative inline-flex h-10 items-center gap-2 rounded-full bg-white px-4 text-sm font-semibold text-stone-950 transition hover:bg-amber-300">
+        <svg class="size-[18px]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6"/><circle cx="10" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>
+        <span class="hidden lg:inline">Cart</span>
+        <span id="cart-badge" aria-live="polite" class="grid size-5 place-items-center rounded-full bg-stone-950 text-[11px] font-bold text-amber-300 transition-transform">0</span>
+      </button>
+      <button type="button" id="menu-btn" aria-label="Open menu" aria-expanded="false" class="grid size-10 place-items-center rounded-full border border-white/10 md:hidden">
+        <svg class="size-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 8h16M4 16h16"/></svg>
+      </button>
+    </div>
+  </div>
+  <nav id="mobile-menu" aria-label="Mobile" class="mx-auto mt-2 hidden max-w-7xl rounded-3xl border border-white/10 bg-stone-950/90 p-3 backdrop-blur-2xl md:hidden">
+    <ul class="flex flex-col gap-1">
+      {nav.map((n) => <li><a href={n.href} class="flex items-center justify-between rounded-2xl px-4 py-3 text-stone-300 hover:bg-white/5 hover:text-white">{n.label}<span aria-hidden="true" class="text-stone-600">↗</span></a></li>)}
+    </ul>
+  </nav>
+</header>

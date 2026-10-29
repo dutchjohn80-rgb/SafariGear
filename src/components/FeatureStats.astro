@@ -1,0 +1,23 @@
+<section class="mx-auto max-w-7xl px-5 py-24">
+  <div class="grid gap-4 md:grid-cols-6 md:grid-rows-2">
+    <div class="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-amber-300 to-orange-600 p-8 text-stone-950 md:col-span-3 md:row-span-2">
+      <svg aria-hidden="true" class="absolute -bottom-10 -right-10 size-72 opacity-20" viewBox="0 0 24 24" fill="currentColor"><path d="M2 20 9.5 7l3.5 6 2-3.5L22 20z"/></svg>
+      <p class="text-xs font-bold uppercase tracking-[0.25em]">Hotel delivery</p>
+      <h3 class="font-display mt-4 text-6xl font-bold tracking-tight md:text-7xl">Within 24h</h3>
+      <p class="mt-4 max-w-sm text-base leading-7 text-stone-900/80">We drop your kit to your Arusha stay before your climb starts.</p>
+    </div>
+    {[
+      { label: 'Expedition-tested', value: '4.9/5 rated', text: 'Every item is field-tested for Kilimanjaro, Meru, and alpine conditions.' },
+      { label: 'Trusted guides', value: '1:1 support', text: 'Our team helps match the right gear for your route and altitude profile.' },
+    ].map((item) => (
+      <div class="group rounded-[2rem] border border-white/10 bg-white/[0.03] p-8 transition hover:border-amber-400/30 hover:bg-white/[0.05] md:col-span-3">
+        <div class="flex items-center justify-between">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-amber-400">{item.label}</p>
+          <span aria-hidden="true" class="text-stone-600 transition group-hover:translate-x-1 group-hover:text-amber-400">↗</span>
+        </div>
+        <h3 class="font-display mt-4 text-4xl font-bold tracking-tight">{item.value}</h3>
+        <p class="mt-2 text-sm leading-6 text-stone-400">{item.text}</p>
+      </div>
+    ))}
+  </div>
+</section>

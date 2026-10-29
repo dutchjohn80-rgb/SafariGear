@@ -1,0 +1,350 @@
+---
+import '../../styles/global.css';
+
+const products = [
+  {
+    id: 'p1',
+    title: 'Summit Pro 65L Backpack',
+    price: 289,
+    rental: 12,
+    rating: 4.9,
+    reviews: 214,
+    tag: 'Bestseller',
+    image: 'https://images.unsplash.com/photo-1622260614153-03223fb72052?w=1200&q=70',
+    description: 'A premium expedition pack designed for high-altitude trekking, combining weatherproof construction, smart load balancing, and all-day carry comfort.',
+    features: ['65L capacity', 'Hydration-ready', 'Raincover included', 'Quick-access front pocket'],
+    specs: [
+      ['Weight', '1.4 kg'],
+      ['Material', 'Recycled ripstop nylon'],
+      ['Load range', '12–20 kg'],
+      ['Warranty', '5-year coverage'],
+    ],
+  },
+  {
+    id: 'p2',
+    title: 'Uhuru Down Parka −30°C',
+    price: 449,
+    rental: 18,
+    rating: 4.8,
+    reviews: 167,
+    tag: 'Summit night',
+    image: 'https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=1200&q=70',
+    description: 'Ultra-insulated layering for summit nights and freezing alpine conditions, built for warmth without sacrificing movement.',
+    features: ['Down insulation', 'Storm-ready shell', 'Helmet-compatible hood', 'Fleece-lined pockets'],
+    specs: [
+      ['Temperature rating', '−30°C'],
+      ['Fill', '800-fill recycled down'],
+      ['Fit', 'Athletic cut'],
+      ['Use', 'Summit nights / alpine camps'],
+    ],
+  },
+  {
+    id: 'p3',
+    title: 'Kibo GTX Trekking Boots',
+    price: 239,
+    rental: 10,
+    rating: 4.7,
+    reviews: 302,
+    tag: 'Waterproof',
+    image: 'https://images.unsplash.com/photo-1520639888713-7851133b1ed0?w=1200&q=70',
+    description: 'High-grip, waterproof boots built to handle lava rock, scree, and long summit days with stabilised footing and a protective toe guard.',
+    features: ['GORE-TEX lining', 'Vibram outsole', 'Ankle support', 'Trail-ready flex'],
+    specs: [
+      ['Sole', 'Vibram mountain grip'],
+      ['Waterproofing', 'GORE-TEX'],
+      ['Weight', '1.1 kg / pair'],
+      ['Ideal use', 'Steep trail / glacier approach'],
+    ],
+  },
+  {
+    id: 'p4',
+    title: 'Meru Ridge 45L Pack',
+    price: 219,
+    rental: 9,
+    rating: 4.8,
+    reviews: 146,
+    tag: 'Trail ready',
+    image: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=1200&q=70',
+    description: 'A day-to-expedition trail design with balanced support, several quick-access compartments, and comfortable carrying across mixed terrain.',
+    features: ['45L volume', 'Compression straps', 'Front stash pocket', 'Mesh back panel'],
+    specs: [
+      ['Capacity', '45L'],
+      ['Weight', '1.2 kg'],
+      ['Frame', 'Lightweight trekking frame'],
+      ['Best for', 'Meru climbs / multi-day hikes'],
+    ],
+  },
+  {
+    id: 'p5',
+    title: 'Apex Thermal Layer Set',
+    price: 179,
+    rental: 8,
+    rating: 4.9,
+    reviews: 198,
+    tag: 'Cold weather',
+    image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1200&q=70',
+    description: 'Warmth-focused thermal layers designed to trap body heat under shell gear without overheating during hard climbs.',
+    features: ['Merino blend', 'Moisture-wicking', 'Layer-friendly fit', 'Odour-resistant'],
+    specs: [
+      ['Fabric', 'Merino wool blend'],
+      ['Weight', '0.6 kg / set'],
+      ['Temperature', '−10°C to 8°C'],
+      ['Fit', 'Base layer / mid-layer'],
+    ],
+  },
+  {
+    id: 'p6',
+    title: 'Kibo Summit Tent Lite',
+    price: 329,
+    rental: 14,
+    rating: 4.8,
+    reviews: 109,
+    tag: 'Camp comfort',
+    image: 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=1200&q=70',
+    description: 'A durable, lightweight shelter for cold nights, with quick-pitch poles and weather-sealed seams built for alpine camps.',
+    features: ['2-person shelter', 'Wind-resistant poles', 'Compact carry pack', 'Double-stitched seams'],
+    specs: [
+      ['Capacity', '2 people'],
+      ['Weight', '2.1 kg'],
+      ['Weatherproofing', 'Sealed seams'],
+      ['Ideal use', 'Basecamp / summit nights'],
+    ],
+  },
+];
+
+export function getStaticPaths() {
+  return [
+    { params: { slug: 'p1' } },
+    { params: { slug: 'p2' } },
+    { params: { slug: 'p3' } },
+    { params: { slug: 'p4' } },
+    { params: { slug: 'p5' } },
+    { params: { slug: 'p6' } },
+  ];
+}
+
+const { slug } = Astro.params;
+const product = products.find((item) => item.id === slug) ?? products[0];
+const year = new Date().getFullYear();
+---
+
+<html lang="en" class="dark scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{product.title} | SafariGear</title>
+    <meta name="description" content={product.description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <style is:global>
+      body {
+        font-family: "Manrope", system-ui, sans-serif;
+      }
+      .font-display, h1, h2, h3 { font-family: "Bricolage Grotesque", system-ui, sans-serif; letter-spacing: -0.03em; }
+    </style>
+  </head>
+
+  <body class="bg-stone-950 text-stone-100 antialiased leading-relaxed selection:bg-amber-400 selection:text-stone-950">
+    <header class="sticky top-0 z-50 border-b border-white/10 bg-stone-950/70 backdrop-blur-xl">
+      <div class="mx-auto flex max-w-7xl items-center gap-4 px-5 py-4 lg:gap-8">
+        <a href="/" class="shrink-0 leading-tight">
+          <span class="text-xl font-bold tracking-tight">SafariGear<span class="text-amber-500">.</span></span>
+          <span class="mt-0.5 block text-[10px] font-medium uppercase tracking-[0.2em] text-stone-400">BongoTrekking Shop</span>
+        </a>
+
+        <nav class="hidden md:block">
+          <ul class="flex items-center gap-6 text-sm font-medium text-stone-300">
+            <li><a href="/" class="transition hover:text-amber-400">Home</a></li>
+            <li><a href="/#gear" class="transition hover:text-amber-400">Explore Gear</a></li>
+            <li><a href="/#planner" class="transition hover:text-amber-400">Packages</a></li>
+            <li><a href="/#contact" class="transition hover:text-amber-400">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="ml-auto flex items-center gap-2">
+          <button type="button" id="lang-toggle" class="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs font-semibold text-stone-300 transition hover:border-amber-500/50 hover:text-amber-400">EN</button>
+          <button type="button" aria-label="Shopping cart" class="relative rounded-full border border-white/10 bg-white/5 p-2 text-stone-200 transition hover:text-amber-400">
+            <svg class="size-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6"/><circle cx="10" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>
+            <span id="cart-badge" class="absolute -right-1 -top-1 grid size-5 place-items-center rounded-full bg-amber-400 text-[11px] font-bold text-stone-950">0</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="mx-auto max-w-7xl px-5 py-12 md:py-20">
+      <a href="/" class="inline-flex items-center gap-2 text-sm font-medium text-stone-300 transition hover:text-amber-400">
+        <span aria-hidden="true">←</span> Back to shop
+      </a>
+
+      <div class="mt-8 grid gap-10 lg:grid-cols-[1.15fr_0.85fr]">
+        <div class="overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03] p-4">
+          <img src={product.image} alt={product.title} loading="eager" class="h-[580px] w-full rounded-[1.5rem] object-cover" />
+        </div>
+
+        <div class="flex flex-col justify-center">
+          <span class="inline-flex w-fit rounded-full bg-amber-500/15 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-amber-400">{product.tag}</span>
+          <h1 class="mt-4 font-display text-5xl font-bold tracking-tight sm:text-5xl">{product.title}</h1>
+
+          <div class="mt-4 flex items-center gap-3 text-sm text-stone-300">
+            <span class="inline-flex items-center gap-1 rounded-full bg-amber-400 px-2.5 py-1 text-xs font-bold text-stone-950">★ {product.rating}</span>
+            <span>{product.reviews} reviews</span>
+            <span>•</span>
+            <span>Rent from ${product.rental}/day</span>
+          </div>
+
+          <p class="mt-6 text-lg leading-8 text-stone-300">{product.description}</p>
+
+          <div class="mt-8 flex items-end gap-4">
+            <p class="font-display text-5xl font-bold">${product.price}</p>
+            <p class="pb-1 text-sm text-stone-400">Free Arusha delivery</p>
+          </div>
+
+          <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+            <button
+              type="button"
+              data-add-to-cart={product.id}
+              data-product-title={product.title}
+              data-product-price={String(product.price)}
+              data-product-image={product.image}
+              class="inline-flex items-center justify-center gap-2 rounded-full bg-amber-400 px-7 py-3.5 font-semibold text-stone-950 transition hover:bg-amber-300"
+            >
+              <svg class="size-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+              <span>Add to Cart</span>
+            </button>
+            <a href="/#gear" class="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-7 py-3.5 font-semibold text-stone-100 transition hover:border-amber-500/60 hover:text-amber-400">
+              Continue shopping
+            </a>
+          </div>
+
+          <div class="mt-10 rounded-[2rem] border border-white/10 bg-white/[0.03] p-5">
+            <p class="text-sm font-semibold uppercase tracking-[0.2em] text-stone-300">Included</p>
+            <ul class="mt-4 space-y-3 text-sm text-stone-300">
+              {product.features.map((feature) => (
+                <li class="flex items-center gap-2">
+                  <span class="inline-block size-2 rounded-full bg-amber-500"></span>
+                  {feature}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <section class="mt-16 grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
+        <div class="rounded-[2rem] border border-white/10 bg-white/[0.03] p-6">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-amber-400">Specifications</p>
+          <dl class="mt-6 space-y-4">
+            {product.specs.map(([label, value]) => (
+              <div class="flex items-center justify-between border-b border-white/10 pb-3 last:border-0 last:pb-0">
+                <dt class="text-stone-400">{label}</dt>
+                <dd class="font-medium text-stone-100">{value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+
+        <div class="rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/[0.04] to-white/[0.02] p-6 md:p-8">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-amber-400">Why climbers choose this</p>
+          <h2 class="mt-3 text-3xl font-bold">Built for high-altitude reliability.</h2>
+          <p class="mt-4 max-w-xl text-stone-300">
+            SafariGear prepares every product for the realities of Tanzanian alpine conditions: altitude swings, sudden weather, steep scree, and long trekking days.
+            Every pickup is tailored for your route, mountain, and pace.
+          </p>
+
+          <div class="mt-8 grid gap-4 sm:grid-cols-3">
+            {[
+              ['2x faster', 'Fit matching'],
+              ['24h', 'Hotel delivery'],
+              ['100%', 'Guide support'],
+            ].map(([value, label]) => (
+              <div class="rounded-3xl border border-white/10 bg-stone-950/60 p-4">
+                <p class="text-2xl font-bold text-amber-400">{value}</p>
+                <p class="mt-1 text-sm text-stone-300">{label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-white/10 bg-stone-950">
+      <div class="mx-auto max-w-7xl px-5 py-6 text-center text-sm text-stone-500">
+        © {year} SafariGear by BongoTrekking. All rights reserved.
+      </div>
+    </footer>
+
+    <script>
+      const badge = document.getElementById('cart-badge');
+      const cartStorageKey = 'safarigear-cart';
+
+      type CartItem = {
+        id: string;
+        title: string;
+        price: number;
+        qty: number;
+        image: string;
+      };
+
+      const readCart = (): CartItem[] => {
+        try {
+          const stored = window.localStorage.getItem(cartStorageKey);
+          return stored ? JSON.parse(stored) : [];
+        } catch {
+          return [];
+        }
+      };
+
+      const writeCart = (items: CartItem[]) => {
+        window.localStorage.setItem(cartStorageKey, JSON.stringify(items));
+      };
+
+      const getCartCount = () => readCart().reduce((total, item) => total + item.qty, 0);
+
+      const updateBadge = (count: number) => {
+        if (badge) {
+          badge.textContent = String(count);
+          badge.classList.add('scale-125');
+          setTimeout(() => badge.classList.remove('scale-125'), 200);
+        }
+      };
+
+      const syncBadge = () => updateBadge(getCartCount());
+      syncBadge();
+
+      document.querySelectorAll('[data-add-to-cart]').forEach((button) => {
+        button.addEventListener('click', () => {
+          const id = button.getAttribute('data-add-to-cart') ?? 'item';
+          const title = button.getAttribute('data-product-title') ?? 'SafariGear item';
+          const price = Number(button.getAttribute('data-product-price') ?? '0');
+          const image = button.getAttribute('data-product-image') ?? 'https://images.unsplash.com/photo-1527631746610-bca00a040d60?w=900&q=70';
+
+          const cart = readCart();
+          const match = cart.find((item) => item.id === id);
+
+          if (match) {
+            match.qty += 1;
+          } else {
+            cart.push({ id, title, price, qty: 1, image });
+          }
+
+          writeCart(cart);
+          syncBadge();
+
+          const label = button.querySelector('span');
+          if (label) {
+            label.textContent = 'Added ✓';
+            setTimeout(() => {
+              label.textContent = 'Add to Cart';
+            }, 1200);
+          }
+        });
+      });
+
+      const lang = document.getElementById('lang-toggle');
+      lang?.addEventListener('click', () => {
+        lang.textContent = lang.textContent === 'EN' ? 'SW' : 'EN';
+      });
+    </script>
+  </body>
+</html>

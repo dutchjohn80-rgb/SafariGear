@@ -1,0 +1,57 @@
+---
+const { categories, year } = Astro.props;
+---
+<footer id="contact" class="relative overflow-hidden border-t border-white/10 bg-stone-950">
+  <div class="mx-auto max-w-7xl px-5 pt-20">
+    <div class="flex flex-col gap-8 rounded-[2.5rem] bg-gradient-to-br from-amber-300 to-orange-600 p-10 text-stone-950 md:flex-row md:items-center md:justify-between md:p-14">
+      <h2 class="font-display max-w-xl text-4xl font-bold tracking-tight md:text-5xl">Ready for the roof of Africa?</h2>
+      <a href="https://wa.me/255700000000" class="inline-flex shrink-0 items-center gap-3 rounded-full bg-stone-950 py-2 pl-7 pr-2 font-semibold text-white transition hover:bg-stone-800">
+        Chat on WhatsApp <span aria-hidden="true" class="grid size-10 place-items-center rounded-full bg-amber-400 text-stone-950">→</span>
+      </a>
+    </div>
+  </div>
+  <div class="mx-auto grid max-w-7xl gap-12 px-5 py-16 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
+    <div>
+      <p class="font-display text-2xl font-bold">SafariGear<span class="text-amber-400">.</span></p>
+      <p class="mt-4 max-w-xs text-sm leading-6 text-stone-500">Premium trekking gear rentals and sales for Kilimanjaro and Mt. Meru, by BongoTrekking, Arusha.</p>
+    </div>
+    <div>
+      <h4 class="text-xs font-semibold uppercase tracking-[0.25em] text-stone-500">Shop</h4>
+      <ul class="mt-5 space-y-3 text-sm text-stone-300">
+        {categories.map((c) => <li><a href="#gear" class="transition hover:text-amber-300">{c.title}</a></li>)}
+      </ul>
+    </div>
+    <div>
+      <h4 class="text-xs font-semibold uppercase tracking-[0.25em] text-stone-500">Contact</h4>
+      <ul class="mt-5 space-y-3 text-sm text-stone-300">
+        <li>Arusha, Tanzania</li>
+        <li><a href="mailto:hello@safarigear.co.tz" class="transition hover:text-amber-300">hello@safarigear.co.tz</a></li>
+        <li><a href="tel:+255700000000" class="transition hover:text-amber-300">+255 700 000 000</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="text-xs font-semibold uppercase tracking-[0.25em] text-stone-500">Connect</h4>
+      <div class="mt-5 flex gap-2">
+        <a href="https://github.com" aria-label="GitHub" class="grid size-11 place-items-center rounded-full border border-white/10 text-stone-400 transition hover:border-amber-400 hover:bg-amber-400 hover:text-stone-950">
+          <svg class="size-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.6 18.3 5 18.3 5c.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5z"/></svg>
+        </a>
+        <a href="https://youtube.com" aria-label="YouTube" class="grid size-11 place-items-center rounded-full border border-white/10 text-stone-400 transition hover:border-amber-400 hover:bg-amber-400 hover:text-stone-950">
+          <svg class="size-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+        </a>
+        <a href="https://wa.me/255700000000" aria-label="WhatsApp" class="grid size-11 place-items-center rounded-full border border-white/10 text-stone-400 transition hover:border-amber-400 hover:bg-amber-400 hover:text-stone-950">
+          <svg class="size-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.3.4c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 2 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.2z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <p aria-hidden="true" class="font-display pointer-events-none select-none text-center text-[18vw] font-bold leading-[0.8] tracking-[-0.05em] text-white/[0.03]">SafariGear</p>
+  <div class="border-t border-white/10">
+    <div class="mx-auto flex max-w-7xl flex-col gap-3 px-5 py-6 text-xs text-stone-500 sm:flex-row sm:justify-between">
+      <p>© {year} SafariGear by BongoTrekking. All rights reserved.</p>
+      <nav aria-label="Legal" class="flex gap-6">
+        <a href="/terms" class="hover:text-amber-300">Terms</a>
+        <a href="/privacy" class="hover:text-amber-300">Privacy</a>
+      </nav>
+    </div>
+  </div>
+</footer>

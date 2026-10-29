@@ -1,0 +1,422 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import BrandMarquee from '../components/BrandMarquee.astro';
+import FeatureStats from '../components/FeatureStats.astro';
+import ProductGrid from '../components/ProductGrid.astro';
+import PlannerSection from '../components/PlannerSection.astro';
+import FaqSection from '../components/FaqSection.astro';
+import Footer from '../components/Footer.astro';
+import { nav, brands, categories, products, packages } from '../data/site';
+
+const year = 2026;
+---
+
+<html lang="en" class="dark scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SafariGear | Kilimanjaro & Meru Gear Rentals in Arusha</title>
+    <meta name="description" content="Premium trekking gear rentals and brand-new equipment delivered to your Arusha hotel. Gear up for Kilimanjaro and Mt. Meru with SafariGear by BongoTrekking." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <style is:global>
+      body { font-family: "Manrope", system-ui, sans-serif; }
+      .font-display, h1, h2, h3 { font-family: "Bricolage Grotesque", system-ui, sans-serif; letter-spacing: -0.03em; }
+      @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+      .marquee { animation: marquee 30s linear infinite; }
+      .marquee:hover { animation-play-state: paused; }
+      @media (prefers-reduced-motion: reduce) { .marquee { animation: none; } }
+    </style>
+  </head>
+
+  <body class="bg-stone-950 text-stone-100 antialiased leading-relaxed selection:bg-amber-400 selection:text-stone-950">
+    <Header nav={nav} />
+
+    <main>
+      <Hero />
+      <BrandMarquee brands={brands} />
+      <FeatureStats />
+
+      <section class="mx-auto max-w-7xl px-5 py-24">
+        <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-[0.25em] text-amber-400">How it works</p>
+            <h2 class="mt-3 font-display text-5xl font-bold tracking-tight">A concierge experience for every summit.</h2>
+          </div>
+          <p class="max-w-xl text-stone-300">We match the right gear to the right route, handle the logistics, and deliver your kit where it matters most: at your base in Arusha.</p>
+        </div>
+
+        <div class="mt-12 grid gap-6 lg:grid-cols-3">
+          {[
+            { step: '01', title: 'Tell us your route', text: 'Pick Kilimanjaro or Mt. Meru, then choose your trek length and weather needs.', icon: 'M4 18V6m0 0l7 6 7-6v12l-7-6-7 6Z' },
+            { step: '02', title: 'We assemble your kit', text: 'Our route specialists curate the exact pack, layers, footwear, and camp essentials you need.', icon: 'M8 6h12v12H8zm0 0l-4 4m4-4v4m12-4V6M8 18l4-4m8 4v-4' },
+            { step: '03', title: 'Pickup or hotel delivery', text: 'Your gear lands at your accommodation with a quick setup walkthrough and support before the climb.', icon: 'M3 9h18m-2 0V6H5v3m2 0v9h10v-9M9 13h6' },
+          ].map((item) => (
+            <div class="rounded-[2rem] border border-white/10 bg-white/[0.03] p-6">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-semibold uppercase tracking-[0.25em] text-amber-400">{item.step}</span>
+                <div class="grid size-11 place-items-center rounded-3xl border border-white/10 bg-stone-950/70 text-amber-400">
+                  <svg class="size-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d={item.icon} /></svg>
+                </div>
+              </div>
+              <h3 class="mt-6 text-2xl font-bold">{item.title}</h3>
+              <p class="mt-3 text-stone-300">{item.text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section class="mx-auto max-w-7xl px-5 pb-24">
+        <div class="rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/[0.04] to-white/[0.02] p-8 md:p-12">
+          <div class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-[0.25em] text-amber-400">Testimonials</p>
+              <h2 class="mt-3 font-display text-5xl font-bold tracking-tight">Summit teams swear by it.</h2>
+            </div>
+            <p class="max-w-xl text-stone-300">From first-time trekkers to seasoned guides, climbers trust SafariGear for dependable performance, fast delivery, and route-specific advice.</p>
+          </div>
+
+          <div class="mt-10 grid gap-5 lg:grid-cols-3">
+            {[
+              { quote: 'The delivery was seamless. My kit was waiting at my hotel before sunrise, and every item felt summit-ready.', name: 'Nadia M.', role: 'Kilimanjaro climber' },
+              { quote: 'We booked a Meru package and everything matched the route perfectly. It removed the stress from planning the climb.', name: 'Daniel K.', role: 'Adventure photographer' },
+              { quote: 'Premium gear, honest advice, and zero hassle. It feels like a concierge for high-altitude trekking.', name: 'Aisha L.', role: 'Mountaineering guide' },
+            ].map((item) => (
+              <div class="rounded-[2rem] border border-white/10 bg-stone-950/60 p-6">
+                <div class="flex items-center gap-1 text-amber-400">
+                  {[...Array(5)].map(() => <span>★</span>)}
+                </div>
+                <p class="mt-5 text-base leading-7 text-stone-200">“{item.quote}”</p>
+                <div class="mt-6 border-t border-white/10 pt-4">
+                  <p class="font-semibold text-white">{item.name}</p>
+                  <p class="text-sm text-stone-400">{item.role}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="gear" class="mx-auto max-w-7xl scroll-mt-24 px-5 py-24">
+        <div class="max-w-2xl">
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-amber-400">Shop by category</p>
+          <h2 class="mt-3 font-display text-5xl font-bold tracking-tight sm:text-5xl">Everything from trailhead to summit.</h2>
+        </div>
+        <div class="mt-12 grid gap-6 md:grid-cols-3">
+          {categories.map((c) => (
+            <a href="#products" class="group relative isolate flex min-h-80 flex-col justify-end overflow-hidden rounded-[2rem] border border-white/10 p-7">
+              <img src={c.img} alt="" loading="lazy" decoding="async" class="absolute inset-0 -z-20 size-full object-cover transition duration-700 group-hover:scale-110" />
+              <div class="absolute inset-0 -z-10 bg-linear-to-t from-stone-950 via-stone-950/70 to-transparent"></div>
+              <div class="mb-4 grid size-12 place-items-center rounded-3xl border border-white/15 bg-white/10 backdrop-blur-md">
+                <svg class="size-6 text-amber-400" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" viewBox="0 0 24 24"><path d={c.icon} /></svg>
+              </div>
+              <h3 class="text-2xl font-bold">{c.title}</h3>
+              <p class="mt-2 text-sm text-stone-300">{c.items.join(' · ')}</p>
+              <span class="mt-4 text-sm font-semibold text-amber-400 transition group-hover:translate-x-1">Browse →</span>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <ProductGrid products={products} />
+      <PlannerSection packages={packages} />
+
+      <section class="mx-auto max-w-7xl px-5 pb-20">
+        <div class="rounded-[2.5rem] border border-white/10 bg-gradient-to-br from-white/[0.04] via-white/[0.02] to-transparent p-8 md:p-12">
+          <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-[0.25em] text-amber-400">Why SafariGear</p>
+              <h2 class="font-display mt-3 text-5xl font-bold tracking-tight">Built for serious climbers, not generic gear lists.</h2>
+            </div>
+            <p class="max-w-xl text-stone-300">Every recommendation is guided by the mountain, weather, altitude, and how you move on the trail. No guesswork, no overpacking, no empty promises.</p>
+          </div>
+
+          <div class="mt-10 grid gap-6 lg:grid-cols-3">
+            {[
+              { title: 'Guide-vetted equipment', text: 'Every item in the shop is selected for real-world mountain performance, not marketing hype.', stat: '98% route-fit rate', icon: 'M5 12h14M12 5v14M5 5l14 14' },
+              { title: 'Zero hidden fees', text: 'Clear pricing, flexible rental windows, and no surprise add-ons at pickup or dropoff.', stat: 'Transparent pricing', icon: 'M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7H14.5a3.5 3.5 0 1 1 0 7H6' },
+              { title: 'Support before summit day', text: 'From route planning to packing lists, we stay with you until your expedition is ready.', stat: '1:1 gear advice', icon: 'M12 3a9 9 0 1 0 9 9m-9-6v6l4 3' },
+            ].map((item) => (
+              <div class="rounded-[2rem] border border-white/10 bg-stone-950/60 p-6">
+                <div class="flex items-center justify-between">
+                  <div class="grid size-12 place-items-center rounded-2xl border border-white/10 bg-white/[0.04] text-amber-400">
+                    <svg class="size-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d={item.icon} /></svg>
+                  </div>
+                  <span class="text-xs font-semibold uppercase tracking-[0.22em] text-stone-500">{item.stat}</span>
+                </div>
+                <h3 class="mt-6 text-2xl font-bold">{item.title}</h3>
+                <p class="mt-3 text-stone-300">{item.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="mx-auto max-w-7xl px-5 pb-28">
+        <div class="rounded-[2.5rem] border border-amber-500/25 bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-transparent p-8 md:p-12">
+          <div class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+            <div class="max-w-2xl">
+              <p class="text-xs font-semibold uppercase tracking-[0.25em] text-amber-400">Ready to climb</p>
+              <h2 class="font-display mt-4 text-5xl font-bold tracking-tight">Build your summit kit with a team that knows the mountain.</h2>
+              <p class="mt-4 text-stone-300">Whether you need a full rental package or a top-tier purchase, we’ll help you arrive prepared, comfortable, and confident.</p>
+            </div>
+            <div class="flex flex-col gap-3 sm:flex-row">
+              <a href="#gear" class="inline-flex items-center justify-center rounded-full bg-amber-400 px-6 py-3.5 font-semibold text-stone-950 transition hover:bg-amber-300">Shop equipment</a>
+              <a href="#planner" class="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-6 py-3.5 font-semibold text-stone-100 transition hover:bg-white/10">Plan my route</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <FaqSection />
+    </main>
+
+    <Footer categories={categories} year={year} />
+
+    <aside id="cart-drawer" class="fixed right-0 top-0 z-[60] flex h-full w-full max-w-md translate-x-full flex-col border-l border-white/10 bg-stone-950/95 p-5 shadow-2xl shadow-black/50 backdrop-blur-xl transition-transform duration-300">
+      <div class="flex items-center justify-between border-b border-white/10 pb-4">
+        <div>
+          <p class="text-xs uppercase tracking-[0.2em] text-stone-400">Your cart</p>
+          <h3 class="mt-1 text-2xl font-bold">SafariGear</h3>
+        </div>
+        <button id="cart-close" type="button" class="rounded-full border border-white/10 bg-white/5 p-2 text-stone-300 transition hover:text-amber-400">✕</button>
+      </div>
+
+      <div id="cart-items" class="mt-6 flex-1 space-y-4 overflow-y-auto"></div>
+
+      <div class="mt-6 border-t border-white/10 pt-4">
+        <div class="flex items-center justify-between text-sm text-stone-400">
+          <span>Subtotal</span>
+          <span id="cart-subtotal">$0</span>
+        </div>
+        <button type="button" class="mt-4 w-full rounded-full bg-amber-400 px-5 py-3 font-semibold text-stone-950 transition hover:bg-amber-300">
+          Secure checkout
+        </button>
+      </div>
+    </aside>
+
+    <div id="cart-overlay" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm"></div>
+
+    <div id="reserve-modal" class="fixed inset-0 z-[70] hidden place-items-center bg-black/65 p-5 backdrop-blur-sm">
+      <div class="w-full max-w-md rounded-[2rem] border border-white/10 bg-stone-950 p-6 shadow-2xl shadow-black/50">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-xs uppercase tracking-[0.2em] text-amber-400">Reservation</p>
+            <h3 class="mt-1 text-2xl font-bold">Confirm package</h3>
+          </div>
+          <button id="reserve-close" type="button" class="rounded-full border border-white/10 bg-white/5 p-2 text-stone-300 hover:text-amber-400">✕</button>
+        </div>
+
+        <div class="mt-6 rounded-3xl border border-white/10 bg-white/[0.03] p-4">
+          <p id="reserve-package-name" class="text-lg font-bold">Kibo Summit Pack</p>
+          <p id="reserve-package-meta" class="mt-1 text-sm text-stone-400">Machame route · 7d</p>
+          <p id="reserve-package-total" class="mt-3 text-3xl font-bold text-amber-400">$0</p>
+        </div>
+
+        <button type="button" class="mt-6 w-full rounded-full bg-amber-400 px-5 py-3 font-semibold text-stone-950 transition hover:bg-amber-300">
+          Reserve now
+        </button>
+      </div>
+    </div>
+
+    <div class="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-stone-950/90 p-3 backdrop-blur-xl md:hidden">
+      <div class="mx-auto flex max-w-md items-center gap-3">
+        <a href="#gear" class="flex-1 rounded-full border border-white/10 bg-white/5 px-4 py-3 text-center text-sm font-semibold text-stone-100">
+          Shop now
+        </a>
+        <button id="mobile-cart-button" type="button" class="flex-1 rounded-full bg-amber-400 px-4 py-3 text-sm font-semibold text-stone-950">
+          Reserve pack
+        </button>
+      </div>
+    </div>
+
+    <script>
+      const menuBtn = document.getElementById('menu-btn');
+      const menu = document.getElementById('mobile-menu');
+      menuBtn?.addEventListener('click', () => {
+        const open = menu?.classList.toggle('hidden') === false;
+        menuBtn.setAttribute('aria-expanded', String(open));
+      });
+
+      const lang = document.getElementById('lang-toggle');
+      lang?.addEventListener('click', () => { lang.textContent = lang.textContent === 'EN' ? 'SW' : 'EN'; });
+
+      document.getElementById('search-form')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' });
+      });
+
+      const badge = document.getElementById('cart-badge');
+      const cartDrawer = document.getElementById('cart-drawer');
+      const cartOverlay = document.getElementById('cart-overlay');
+      const cartItems = document.getElementById('cart-items');
+      const cartSubtotal = document.getElementById('cart-subtotal');
+      const cartTrigger = document.getElementById('cart-trigger');
+      const cartClose = document.getElementById('cart-close');
+      const cartStorageKey = 'safarigear-cart';
+
+      type CartItem = { id: string; title: string; price: number; qty: number; image: string };
+
+      const readCart = (): CartItem[] => {
+        try {
+          const stored = window.localStorage.getItem(cartStorageKey);
+          return stored ? JSON.parse(stored) : [];
+        } catch {
+          return [];
+        }
+      };
+
+      const writeCart = (items: CartItem[]) => window.localStorage.setItem(cartStorageKey, JSON.stringify(items));
+      const getCartCount = () => readCart().reduce((sum, item) => sum + item.qty, 0);
+
+      const syncBadge = () => {
+        if (!badge) return;
+        badge.textContent = String(getCartCount());
+        badge.classList.add('scale-125');
+        setTimeout(() => badge.classList.remove('scale-125'), 200);
+      };
+
+      const openCart = () => {
+        cartDrawer?.classList.remove('translate-x-full');
+        cartOverlay?.classList.remove('hidden');
+      };
+
+      const closeCart = () => {
+        cartDrawer?.classList.add('translate-x-full');
+        cartOverlay?.classList.add('hidden');
+      };
+
+      const renderCart = () => {
+        const items = readCart();
+        if (!cartItems || !cartSubtotal) return;
+
+        if (!items.length) {
+          cartItems.innerHTML = '<div class="rounded-3xl border border-dashed border-white/10 p-5 text-sm text-stone-400">Your cart is empty. Add a few essentials for your climb.</div>';
+          cartSubtotal.textContent = '$0';
+          syncBadge();
+          return;
+        }
+
+        const subtotal = items.reduce((sum, item) => sum + item.price * item.qty, 0);
+        cartSubtotal.textContent = `$${subtotal}`;
+        cartItems.innerHTML = items.map((item) => `
+          <div class="flex gap-3 rounded-3xl border border-white/10 bg-white/[0.03] p-3">
+            <img src="${item.image}" alt="${item.title}" loading="lazy" class="h-20 w-20 rounded-xl object-cover" />
+            <div class="flex flex-1 flex-col">
+              <div class="flex items-start justify-between gap-3">
+                <div>
+                  <p class="text-sm font-semibold text-stone-100">${item.title}</p>
+                  <p class="mt-1 text-xs text-stone-400">Qty: ${item.qty}</p>
+                </div>
+                <button type="button" data-remove-item="${item.id}" class="text-xs text-stone-400 hover:text-amber-400">Remove</button>
+              </div>
+              <p class="mt-3 text-sm font-semibold text-amber-400">$${item.price * item.qty}</p>
+            </div>
+          </div>
+        `).join('');
+
+        document.querySelectorAll('[data-remove-item]').forEach((removeBtn) => {
+          removeBtn.addEventListener('click', () => {
+            const current = readCart();
+            const next = current.filter((item) => item.id !== removeBtn.getAttribute('data-remove-item'));
+            writeCart(next);
+            renderCart();
+            syncBadge();
+          });
+        });
+
+        syncBadge();
+      };
+
+      cartTrigger?.addEventListener('click', openCart);
+      cartClose?.addEventListener('click', closeCart);
+      cartOverlay?.addEventListener('click', closeCart);
+      document.getElementById('mobile-cart-button')?.addEventListener('click', openCart);
+
+      document.querySelectorAll('[data-add-to-cart]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const title = btn.dataset.productTitle ?? 'SafariGear item';
+          const price = Number(btn.dataset.productPrice ?? '0');
+          const image = btn.dataset.productImage ?? 'https://images.unsplash.com/photo-1527631746610-bca00a040d60?w=900&q=70';
+          const id = btn.dataset.addToCart ?? 'item';
+
+          const cart = readCart();
+          const match = cart.find((item) => item.id === id);
+          if (match) {
+            match.qty += 1;
+          } else {
+            cart.push({ id, title, price, qty: 1, image });
+          }
+
+          writeCart(cart);
+          renderCart();
+
+          const label = btn.querySelector('span');
+          if (label) {
+            label.textContent = 'Added ✓';
+            setTimeout(() => {
+              label.textContent = 'Add to Cart';
+            }, 1200);
+          }
+        });
+      });
+
+      const plannerPackages = {
+        kili: { name: 'Kibo Summit Pack', route: 'Machame route', items: [['65L Backpack', 12], ['−30°C Down Parka', 18], ['GTX Trekking Boots', 10], ['−20°C Sleeping Bag', 14], ['Trekking Poles (pair)', 4], ['Headlamp & Gaiters', 5]] },
+        meru: { name: 'Meru Ridge Pack', route: 'Momella route', items: [['45L Backpack', 9], ['Insulated Jacket', 12], ['GTX Trekking Boots', 10], ['−10°C Sleeping Bag', 9], ['Trekking Poles (pair)', 4]] },
+      } as const;
+
+      const form = document.getElementById('planner-form') as HTMLFormElement | null;
+      const out = (id: string) => document.getElementById(id)!;
+      const reserveModal = document.getElementById('reserve-modal');
+      const reserveClose = document.getElementById('reserve-close');
+      const reserveButton = document.getElementById('reserve-package-button');
+
+      const openReserveModal = () => {
+        reserveModal?.classList.remove('hidden');
+        reserveModal?.classList.add('grid');
+      };
+
+      const closeReserveModal = () => {
+        reserveModal?.classList.add('hidden');
+        reserveModal?.classList.remove('grid');
+      };
+
+      reserveClose?.addEventListener('click', closeReserveModal);
+      reserveButton?.addEventListener('click', openReserveModal);
+      reserveModal?.addEventListener('click', (event) => {
+        if (event.target === reserveModal) closeReserveModal();
+      });
+
+      function renderPlanner() {
+        if (!form) return;
+        const data = new FormData(form);
+        const key = (data.get('mountain') as 'kili' | 'meru') ?? 'kili';
+        const days = Number(data.get('days') ?? 7);
+        const pkg = plannerPackages[key];
+        out('days-out').textContent = `${days} days`;
+        out('pkg-name').textContent = pkg.name;
+        out('pkg-route').textContent = `${pkg.route} · ${days}d`;
+        out('pkg-items').innerHTML = pkg.items
+          .map(([n, p]) => `<li class="flex justify-between"><span>✓ ${n}</span><span class="text-stone-500">$${p}/day</span></li>`)
+          .join('');
+        const total = pkg.items.reduce((s, [, p]) => s + p, 0) * days;
+        out('pkg-price').textContent = `$${total}`;
+
+        if (document.getElementById('reserve-package-name')) {
+          document.getElementById('reserve-package-name')!.textContent = pkg.name;
+          document.getElementById('reserve-package-meta')!.textContent = `${pkg.route} · ${days}d`;
+          document.getElementById('reserve-package-total')!.textContent = `$${total}`;
+        }
+      }
+
+      form?.addEventListener('input', renderPlanner);
+      renderPlanner();
+      renderCart();
+      syncBadge();
+    </script>
+  </body>
+</html>

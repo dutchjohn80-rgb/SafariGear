@@ -1,0 +1,15 @@
+---
+const { brands } = Astro.props;
+---
+<section aria-label="Brands we stock" class="border-y border-white/5 py-8">
+  <p class="mb-6 text-center text-xs font-medium uppercase tracking-[0.3em] text-stone-500">Trusted brands, summit-tested</p>
+  <div class="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]">
+    <ul class="marquee flex w-max items-center gap-10">
+      {[...brands, ...brands].map((b, i) => (
+        <li aria-hidden={i >= brands.length ? 'true' : undefined} class="font-display flex items-center gap-10 whitespace-nowrap text-2xl font-bold tracking-tight text-stone-600 transition hover:text-white">
+          {b}<span aria-hidden="true" class="text-sm text-amber-500/60">✦</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
